@@ -9,6 +9,6 @@ namespace ESourcing.Products.Data.Interface
 {
     public interface IProductContext
     {
-        IMongoCollection<Product> Products { get; set; }
+        IMongoCollection<Product> Products { get; }
     }
 }

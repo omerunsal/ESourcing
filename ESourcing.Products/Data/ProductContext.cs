@@ -1,15 +1,19 @@
 ﻿using ESourcing.Products.Data.Interface;
 using ESourcing.Products.Entities;
+using ESourcing.Products.Settings;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ESourcing.Products.Data
 {
     public class ProductContext : IProductContext
     {
-        public IMongoCollection<Product> Products { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ProductContext(IProductDatabaseSettings settings)
+        {
+            var client = new MongoClient(settings.ConnectionStrings);
+            var database = client.GetDatabase(settings.DatabaseName);
+
+            Products = database.GetCollection<Product>(settings.CollectionName);
+        }
+        public IMongoCollection<Product> Products { get; }
     }
 }
