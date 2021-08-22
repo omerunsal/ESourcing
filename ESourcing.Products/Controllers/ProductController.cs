@@ -35,7 +35,7 @@ namespace ESourcing.Products.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             var products = await _productRepository.GetProducts();
             return Ok(products);
